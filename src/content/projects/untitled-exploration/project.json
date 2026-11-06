@@ -6,6 +6,7 @@
   "featured": true,
   "order": 1,
   "placeholder": false,
-  "accentColor": "#8fd6b4",
-  "art": "terrain"
+  "accentColor": "#ff7f6e",
+  "art": "terrain",
+  "downloadUrl": "https://stahlmosh.itch.io/redline-no-mercy-in-the-red-zone"
 }
