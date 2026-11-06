@@ -101,11 +101,11 @@ export const contact = {
 
 /** Social links. Fill in `url` for each. */
 export const socials: LinkItem[] = [
-  { id: 'github', label: 'GitHub', url: '' },
-  { id: 'itch', label: 'itch.io', url: '' },
-  { id: 'linkedin', label: 'LinkedIn', url: '' },
-  { id: 'instagram', label: 'Instagram', url: '' },
-  { id: 'youtube', label: 'YouTube', url: '' },
+  { id: 'github', label: 'GitHub', url: 'https://github.com/stahlmosh' },
+  { id: 'itch', label: 'itch.io', url: 'https://stahlmosh.itch.io' },
+  { id: 'linkedin', label: 'LinkedIn', url: 'https://www.linkedin.com/in/ritvik-paul-022bb6386/' },
+  { id: 'instagram', label: 'Instagram', url: 'https://www.instagram.com/stahlmosh.dev/' },
+  { id: 'youtube', label: 'YouTube', url: 'https://www.youtube.com/@Moshcreates' },
 ]
 
 /** Links that are set, plus (in dev only) the missing ones so you can see where they go. */

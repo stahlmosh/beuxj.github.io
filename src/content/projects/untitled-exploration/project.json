@@ -1,11 +1,11 @@
 {
-  "title": "Untitled Exploration",
-  "summary": "Placeholder for an exploration game. Replace this with a sentence or two about the project.",
-  "type": "Exploration",
+  "title": "Redline: No Mercy in the red zone",
+  "summary": "Redline is a short, fast-paced arcade top-down shooter built in Godot. Your weapons get stronger and evolve as you survive each level, and your goal is to stay alive against relentless waves of enemies until the end. Dive straight into high-octane action, test your reflexes, and see if you can make it to the finish line!.",
+  "type": "Arcade",
   "engine": "Godot",
   "featured": true,
   "order": 1,
-  "placeholder": true,
+  "placeholder": false,
   "accentColor": "#8fd6b4",
   "art": "terrain"
 }
