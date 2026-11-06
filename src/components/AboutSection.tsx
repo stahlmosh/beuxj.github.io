@@ -9,7 +9,7 @@ export function AboutSection() {
       <div className="wrap about-grid">
         <figure className="poster">
           <img
-            src="/stahlmosh.webp"
+            src={`${import.meta.env.BASE_URL}stahlmosh.webp`}
             width="900"
             height="900"
             loading="lazy"

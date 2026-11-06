@@ -84,7 +84,7 @@ export function Header({ home }: { home: boolean }) {
     <header ref={headRef} className="site-header">
       <div className="nav-bar">
         <a href={sectionHref('top')} className="brand" onClick={(e) => onNav(e, 'top')}>
-          <img src="/favicon.png" width="44" height="44" alt="" className="brand-mark" />
+          <img src={`${import.meta.env.BASE_URL}favicon.png`} width="44" height="44" alt="" className="brand-mark" />
           <span>
             <span className="brand-name">{site.name}</span>
             <span className="brand-sub">{site.descriptor}</span>

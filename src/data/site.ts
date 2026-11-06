@@ -95,17 +95,17 @@ export const legal = {
 
 /** Contact section. Leave `email` empty to hide the email button. */
 export const contact = {
-  email: 'stahlmosh.dev@gmail.com',
+  email: '',
   line: 'Got a project in mind? Say hello.',
 }
 
 /** Social links. Fill in `url` for each. */
 export const socials: LinkItem[] = [
-  { id: 'github', label: 'GitHub', url: 'https://github.com/stahlmosh' },
-  { id: 'itch', label: 'itch.io', url: 'https://stahlmosh.itch.io/' },
-  { id: 'linkedin', label: 'LinkedIn', url: 'https://www.linkedin.com/in/ritvik-paul-022bb6386/' },
-  { id: 'instagram', label: 'Instagram', url: 'https://www.instagram.com/stahlmosh.dev/' },
-  { id: 'youtube', label: 'YouTube', url: 'https://www.youtube.com/@Moshcreates' },
+  { id: 'github', label: 'GitHub', url: '' },
+  { id: 'itch', label: 'itch.io', url: '' },
+  { id: 'linkedin', label: 'LinkedIn', url: '' },
+  { id: 'instagram', label: 'Instagram', url: '' },
+  { id: 'youtube', label: 'YouTube', url: '' },
 ]
 
 /** Links that are set, plus (in dev only) the missing ones so you can see where they go. */
@@ -119,14 +119,15 @@ export const aboutReady = false
 export const showAbout = import.meta.env.DEV || aboutReady
 
 export const bio = [
-  'I\'m a Computer Science student exploring game development, learning through experimentation, mistakes, and building things from scratch. After years of playing games, I started craving something different. Eventually, I decided to stop looking for it and try creating it myself.',
-  'I have a simple goal: Make something I\'d want to play. Hopefully, you\'ll want to play it too.',
+  'PLACEHOLDER: write two or three sentences about who you are and what you make.',
+  'Mention the kinds of worlds you like building and the systems you like digging into.',
 ]
 
 /** PLACEHOLDER: groups mirror the areas named in the brief. Edit, add or remove freely. */
 export const skillGroups: SkillGroup[] = [
+  { title: 'Game design', items: ['Systems design', 'Level & environment design'] },
   { title: 'Engines', items: ['Unreal Engine', 'Godot'] },
-  { title: 'Programming', items: ['C++', 'GDScript', 'Python', ] },
   { title: '3D & art', items: ['Blender'] },
+  { title: 'Programming', items: ['Gameplay code', 'Tools'] },
   { title: 'Physics', items: ['Physics engine'] },
 ]

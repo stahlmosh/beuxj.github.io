@@ -29,7 +29,7 @@ export function Hero({ project, onPlay }: Props) {
             <p className="hero-summary">{site.descriptor}</p>
           </div>
           <div className="hero-art">
-            <img className="hero-logo" src="/stahlmosh.webp" width="360" height="360" alt="" />
+            <img className="hero-logo" src={`${import.meta.env.BASE_URL}stahlmosh.webp`} width="360" height="360" alt="" />
           </div>
         </div>
       </section>

@@ -24,5 +24,5 @@ function siteMeta(siteUrl: string): Plugin {
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', 'VITE_')
-  return { plugins: [react(), tailwindcss(), siteMeta(env.VITE_SITE_URL ?? '')] }
+  return { base: './', plugins: [react(), tailwindcss(), siteMeta(env.VITE_SITE_URL ?? '')] }
 })
