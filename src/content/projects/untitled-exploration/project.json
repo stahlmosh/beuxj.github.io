@@ -1,0 +1,12 @@
+{
+  "title": "Redline: No Mercy in the Red Zone",
+  "summary": "Redline is a short, fast-paced arcade top-down shooter built in Godot. Your weapons get stronger and evolve as you survive each level, and your goal is to stay alive against relentless waves of enemies until the end. Dive straight into high-octane action, test your reflexes, and see if you can make it to the finish line!",
+  "type": "Exploration",
+  "engine": "Godot",
+  "featured": true,
+  "order": 1,
+  "placeholder": false,
+  "accentColor": "#ff7f6e",
+  "art": "terrain",
+  "downloadUrl": "https://stahlmosh.itch.io/redline-no-mercy-in-the-red-zone"
+}

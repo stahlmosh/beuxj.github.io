@@ -1,0 +1,10 @@
+{
+  "title": "Untitled Prototype",
+  "summary": "Placeholder for a prototype. Replace this with a sentence or two about the project.",
+  "type": "Prototype",
+  "engine": "Godot",
+  "order": 4,
+  "placeholder": true,
+  "accentColor": "#ffa66b",
+  "art": "cube"
+}

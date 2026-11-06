@@ -1,0 +1,10 @@
+{
+  "title": "Untitled Horror",
+  "summary": "Placeholder for a horror project. Replace this with a sentence or two about the project.",
+  "type": "Horror",
+  "engine": "Unreal",
+  "order": 2,
+  "placeholder": true,
+  "accentColor": "#ff7f6e",
+  "art": "eye"
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Untitled Physics",
+  "summary": "Placeholder for a physics-driven project. Replace this with a sentence or two about the project.",
+  "type": "Physics",
+  "engine": "Custom",
+  "order": 3,
+  "placeholder": true,
+  "accentColor": "#ffd36b",
+  "art": "orbit"
+}

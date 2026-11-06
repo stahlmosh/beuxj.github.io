@@ -1,0 +1,16 @@
+{
+  "title": "Physics Engine",
+  "summary": "PLACEHOLDER: write a short brief about your physics engine: what it simulates and why you are building it.",
+  "type": "Engine",
+  "engine": "Custom",
+  "accentColor": "#8fd6b4",
+  "details": [
+    "PLACEHOLDER: a longer description. How it works, what you have built so far, what comes next."
+  ],
+  "highlights": [
+    "PLACEHOLDER: feature one",
+    "PLACEHOLDER: feature two",
+    "PLACEHOLDER: feature three"
+  ],
+  "placeholder": true
+}
