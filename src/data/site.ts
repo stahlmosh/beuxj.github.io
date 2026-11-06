@@ -115,7 +115,7 @@ export const visibleLinks = (links: LinkItem[]) => links.filter((l) => l.url || 
  * The About section is hidden on the live site until you set this to true.
  * Replace the bio and skills below first. (In `npm run dev` it always shows, so you can see the layout.)
  */
-export const aboutReady = false
+export const aboutReady = true
 export const showAbout = import.meta.env.DEV || aboutReady
 
 export const bio = [
