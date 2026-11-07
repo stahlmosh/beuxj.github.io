@@ -1,0 +1,11 @@
+{
+  "title": "Sample Environment Asset",
+  "summary": "Placeholder for an environment asset you made in Blender or Unreal. Replace this with a sentence or two about what is in the pack.",
+  "type": "Environment Asset",
+  "kind": "asset",
+  "engine": "Unreal",
+  "order": 50,
+  "placeholder": true,
+  "art": "terrain",
+  "highlights": ["Placeholder", "Replace me"]
+}
