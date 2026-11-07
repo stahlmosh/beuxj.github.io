@@ -54,6 +54,8 @@ export interface Project {
   featured?: boolean
   /** Library order, lowest first. Projects without one go last, sorted by folder name. */
   order?: number
+
+  kind?: 'game' | 'asset'
   /** "engine" gives the cartridge its dark dev-cartridge look (used by the physics engine). */
   variant?: 'engine' | 'mystery'
   /** Dev-only reminder (hidden on the live site). Remove when the entry is real. */
