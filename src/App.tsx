@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useReveal } from './effects'
 import { showAbout, site, type Project } from './data/site'
-import { engine, featuredProject, findProject, mystery, projects } from './data/projects'
+import { assetProjects, engine, featuredProject, findProject, games, isAsset, mystery } from './data/projects'
 import { useView } from './hooks'
 import { projectHref, scrollToSection, useRoute } from './router'
 import { Header } from './components/Header'
@@ -10,6 +10,7 @@ import { Console } from './components/Console'
 import { Library } from './components/Library'
 import { ClassicProjectList } from './components/ClassicProjectList'
 import { ViewToggle } from './components/ViewToggle'
+import { ShelfToggle, type Shelf } from './components/ShelfToggle'
 import { LoadingScreen } from './components/LoadingScreen'
 import { ProjectPage } from './components/ProjectPage'
 import { PhysicsSection } from './components/PhysicsSection'
@@ -21,15 +22,18 @@ import { TermsPage } from './components/TermsPage'
 import { NotFound } from './components/NotFound'
 import { ToyBox } from './components/ToyBox'
 
-const library = mystery ? [...projects, mystery] : projects
+const gamesLibrary = mystery ? [...games, mystery] : games
+const hasAssets = assetProjects.length > 0
+const shelfOf = (p?: Project): Shelf => (isAsset(p) ? 'assets' : 'games')
 
 export default function App() {
   const route = useRoute()
   const [view, setView] = useView()
-  const [loadedId, setLoadedId] = useState(() => {
-    const want = route.name === 'home' ? route.cart : undefined
-    return library.some((p) => p.id === want) ? want : library[0]?.id
-  })
+  const startCart = route.name === 'home' ? [...gamesLibrary, ...assetProjects].find((p) => p.id === route.cart) : undefined
+  const [shelf, setShelf] = useState<Shelf>(() => (startCart ? shelfOf(startCart) : gamesLibrary.length || !hasAssets ? 'games' : 'assets'))
+  const library = shelf === 'assets' ? assetProjects : gamesLibrary
+  const shelfItems = shelf === 'assets' ? assetProjects : games
+  const [loadedId, setLoadedId] = useState(() => startCart?.id ?? library[0]?.id)
   const [ejecting, setEjecting] = useState<Project | null>(null)
   const [swapped, setSwapped] = useState(false)
   const [loading, setLoading] = useState<Project | null>(null)
@@ -85,10 +89,25 @@ export default function App() {
     [loadedId],
   )
 
-  // A link like #/games/<id> loads that cartridge into the reader.
+  const changeShelf = (next: Shelf) => {
+    if (next === shelf) return
+    const list = next === 'assets' ? assetProjects : gamesLibrary
+    window.clearTimeout(ejectTimer.current)
+    setEjecting(null)
+    setSwapped(false)
+    setShelf(next)
+    setLoadedId(list[0]?.id)
+  }
+
+  // A link like #/games/<id> loads that cartridge into the reader (switching shelf if needed).
   useEffect(() => {
-    const want = cart ? library.find((p) => p.id === cart) : undefined
-    if (want && want.id !== loadedId) insert(want)
+    const want = cart ? [...gamesLibrary, ...assetProjects].find((p) => p.id === cart) : undefined
+    if (!want || want.id === loadedId) return
+    if (shelfOf(want) !== shelf) {
+      setShelf(shelfOf(want))
+      setLoadedId(want.id)
+      setSwapped(true)
+    } else insert(want)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart])
 
@@ -156,24 +175,27 @@ export default function App() {
                 <div className="wrap">
                   <div className="row-between">
                     <h2 id="games-title" className="h-section">
-                      Games
+                      {shelf === 'assets' ? 'Assets' : 'Games'}
                     </h2>
-                    {projects.length > 6 && <ViewToggle view={view} onChange={setView} />}
+                    <div className="row-controls">
+                      {hasAssets && <ShelfToggle shelf={shelf} onChange={changeShelf} counts={{ games: games.length, assets: assetProjects.length }} />}
+                      {shelfItems.length > 6 && <ViewToggle view={view} onChange={setView} />}
+                    </div>
                   </div>
 
                   {!loaded ? (
                     <p className="empty-note">
                       {import.meta.env.DEV ? 'No games yet. Run: npm run new-project -- "Game title"' : 'New games are on the way. Check back soon.'}
                     </p>
-                  ) : !(view === 'classic' && projects.length > 6) ? (
+                  ) : !(view === 'classic' && shelfItems.length > 6) ? (
                     <>
                       <Console loaded={loaded} ejecting={ejecting} animateIn={swapped} onPlay={() => setLoading(loaded)} />
                       <Library projects={library} loadedId={loaded.id} onInsert={insert} />
                     </>
                   ) : (
-                    <ClassicProjectList projects={projects} />
+                    <ClassicProjectList projects={shelfItems} />
                   )}
-                  {loaded && <ToyBox projects={projects} onOpen={setLoading} />}
+                  {loaded && <ToyBox key={shelf} projects={shelfItems} onOpen={setLoading} />}
                 </div>
               </section>
 

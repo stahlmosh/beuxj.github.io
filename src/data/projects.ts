@@ -24,6 +24,8 @@ const assets = import.meta.glob<string>('../content/**/*.{png,jpg,jpeg,webp,gif,
 })
 
 const PALETTE = ['#8fd6b4', '#ff7f6e', '#ffd36b', '#ffa66b']
+/** Assets get cooler colours so they read as a different kind of cartridge. */
+const ASSET_PALETTE = ['#7fc8e8', '#9fd8cf', '#b9a8f0', '#8fb7ee']
 const ARTS: ArtKind[] = ['terrain', 'eye', 'orbit', 'cube']
 
 const isUrl = (v: string) => /^(\/|https?:\/\/|data:)/.test(v)
@@ -78,7 +80,7 @@ function build(raw: Raw, dir: string, slug: string): Project | null {
     mediaType: raw.mediaType ?? (mediaSrc ? mediaTypeOf(mediaSrc) : undefined),
     posterSrc: files.url(raw.posterSrc) ?? files.auto('poster'),
     shots: raw.shots?.length ? raw.shots.map((s) => files.url(s)).filter((s): s is string => !!s) : files.autoAll('shot'),
-    accentColor: raw.accentColor ?? pick(PALETTE, slug),
+    accentColor: raw.accentColor ?? pick(raw.kind === 'asset' ? ASSET_PALETTE : PALETTE, slug),
     art: raw.art ?? pick(ARTS, slug),
   } as Project
 }
@@ -101,7 +103,13 @@ export const engine: Project | undefined = Object.entries(engineFiles)
   .map(([path, raw]) => build({ variant: 'engine', art: 'physics', ...raw }, dirOf(path), 'physics-engine'))
   .find((p): p is Project => p !== null && isLive(p))
 
-export const featuredProject: Project | undefined = projects.find((p) => p.featured) ?? projects[0]
+export const isAsset = (p?: Project) => p?.kind === 'asset'
+
+/** The two shelves of the library. */
+export const games: Project[] = projects.filter((p) => !isAsset(p))
+export const assetProjects: Project[] = projects.filter(isAsset)
+
+export const featuredProject: Project | undefined = games.find((p) => p.featured) ?? games[0]
 
 export const findProject = (id: string): Project | undefined =>
   projects.find((p) => p.id === id) ?? (engine?.id === id ? engine : undefined)

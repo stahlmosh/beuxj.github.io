@@ -78,7 +78,7 @@ export function LoadingScreen({ project, onNavigate, onClose }: Props) {
   }, [reduced, quick])
 
   return (
-    <div ref={rootRef} tabIndex={-1} role="status" className={`loading dark-zone${exiting ? ' is-exiting' : ''}${quick ? ' is-quick' : ''}`}
+    <div ref={rootRef} tabIndex={-1} role="status" data-kind={project.kind === 'asset' ? 'asset' : undefined} className={`loading dark-zone${exiting ? ' is-exiting' : ''}${quick ? ' is-quick' : ''}`}
       onClick={(e) => e.target === e.currentTarget && skipRef.current()}
     >
       <span className="sr-only">Loading {project.title}</span>

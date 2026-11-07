@@ -1,5 +1,5 @@
 // Creates src/content/projects/<slug>/project.json so a new cartridge appears in the library.
-// Usage: npm run new-project -- "My Game" --type Horror --engine Unreal --download https://...
+// Usage (add --asset for something you sell or share, e.g. an environment pack): npm run new-project -- "My Game" --type Horror --engine Unreal --download https://...
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -23,7 +23,7 @@ for (let i = 0; i < args.length; i++) {
 
 const title = words.join(' ').trim()
 if (!title) {
-  console.log('Usage: npm run new-project -- "Game title" [--type Horror] [--engine Unreal] [--genre ...] [--role ...]')
+  console.log('Usage: npm run new-project -- "Game title" [--asset] [--type Horror] [--engine Unreal] [--genre ...] [--role ...]')
   console.log('         [--duration ...] [--team ...] [--summary "..."] [--download URL] [--trailer URL] [--source URL] [--featured]')
   process.exit(1)
 }
@@ -60,7 +60,8 @@ const str = (v) => (typeof v === 'string' ? v : undefined)
 const data = {
   title,
   summary: str(flags.summary) ?? 'Write one or two sentences about the game.',
-  type: str(flags.type) ?? 'Game',
+  type: str(flags.type) ?? (flags.asset ? 'Environment Asset' : 'Game'),
+  kind: flags.asset ? 'asset' : undefined,
   genre: str(flags.genre),
   engine: str(flags.engine),
   role: str(flags.role),

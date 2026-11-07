@@ -708,3 +708,220 @@ a.sticker:hover {
     transform: none;
   }
 }
+
+/* ---- Library shelf switch (Games / Assets) ---- */
+.row-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+.seg-count {
+  display: inline-block;
+  min-width: 1.4em;
+  margin-left: 0.3em;
+  padding: 0 0.35em;
+  border-radius: 999px;
+  background: rgb(27 19 16 / 0.14);
+  font-size: 0.78em;
+  line-height: 1.6;
+  text-align: center;
+}
+.seg button[aria-pressed="true"] .seg-count {
+  background: rgb(243 229 198 / 0.28);
+}
+
+/* ---- Asset cartridge: a cooler "data pack" with a cut corner, punch hole and blueprint grid ---- */
+.cart-front[data-variant="asset"] {
+  border-radius: 0.35em 2.4em 0.35em 0.35em;
+  background-color: var(--accent);
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.22) 0.07em, transparent 0.07em),
+    linear-gradient(90deg, rgb(255 255 255 / 0.22) 0.07em, transparent 0.07em);
+  background-size: 1em 1em;
+}
+.cart-front[data-variant="asset"] .cart-grip {
+  top: 0.5em;
+  left: auto;
+  right: 1.1em;
+  width: 0.95em;
+  height: 0.95em;
+  border: 0.14em solid var(--color-ink);
+  border-radius: 50%;
+  background: var(--color-night);
+  opacity: 1;
+}
+.cart-front[data-variant="asset"] .cart-label {
+  border-style: dashed;
+  border-radius: 0.2em;
+}
+.cart-front[data-variant="asset"] .cart-stripe {
+  background: #1d5f73;
+  color: var(--color-paper);
+  letter-spacing: 0.14em;
+}
+.cart-front[data-variant="asset"] .cart-art {
+  border-bottom-style: dashed;
+}
+.cart-front[data-variant="asset"] .cart-engine {
+  background: #bfe9f5;
+}
+.cart-front[data-variant="asset"] .cart-pins {
+  left: 1.2em;
+  right: 1.2em;
+  height: 0.7em;
+  border-radius: 0.4em;
+  background:
+    radial-gradient(circle, var(--color-paper) 0 0.17em, transparent 0.2em) 0 0 / 0.9em 100% repeat-x,
+    var(--color-ink);
+}
+.cart-front[data-variant="asset"] ~ .cart-side,
+.cart-3d:has(.cart-front[data-variant="asset"]) .cart-side {
+  border-radius: 0 0.9em 0.2em 0;
+}
+
+/* ---- Asset reader: a clear-plastic handheld (translucent shell, circuit board showing through) ---- */
+.reader[data-kind="asset"] {
+  transform: rotate(0.7deg);
+}
+.reader[data-kind="asset"] .reader-panel {
+  grid-template-columns: auto 1fr auto;
+  border-radius: 0 0 14px 40px;
+  background-color: #1c2a3d;
+  background-image:
+    linear-gradient(112deg, rgb(255 255 255 / 0.34) 0 9%, transparent 9% 15%, rgb(255 255 255 / 0.2) 15% 19%, transparent 19%),
+    linear-gradient(rgb(104 186 238 / 0.62), rgb(104 186 238 / 0.62)),
+    url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22140%22 height=%2290%22 viewBox=%220 0 140 90%22%3E%3Crect width=%22140%22 height=%2290%22 fill=%22%231c2a3d%22/%3E%3Cg fill=%22none%22 stroke=%22%233fc4a6%22 stroke-width=%222.2%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M0 14 H38 L48 24 H92%22/%3E%3Cpath d=%22M0 70 H30 L42 58 H70%22/%3E%3Cpath d=%22M96 90 V62 L108 50 H140%22/%3E%3Cpath d=%22M60 0 V16%22/%3E%3Cpath d=%22M118 0 V28 L128 38 H140%22/%3E%3Cpath d=%22M20 90 V76%22/%3E%3C/g%3E%3Crect x=%2278%22 y=%2230%22 width=%2234%22 height=%2222%22 rx=%222%22 fill=%22%230d1520%22 stroke=%22%23e8b84a%22 stroke-width=%222%22/%3E%3Cpath d=%22M84 26 V30 M92 26 V30 M100 26 V30 M108 26 V30 M84 52 V56 M92 52 V56 M100 52 V56 M108 52 V56%22 stroke=%22%23e8b84a%22 stroke-width=%222.4%22/%3E%3Crect x=%2210%22 y=%2230%22 width=%2222%22 height=%2216%22 rx=%222%22 fill=%22%230d1520%22 stroke=%22%23e8b84a%22 stroke-width=%222%22/%3E%3Cg fill=%22%23e8b84a%22%3E%3Ccircle cx=%2252%22 cy=%2224%22 r=%223%22/%3E%3Ccircle cx=%2270%22 cy=%2258%22 r=%223%22/%3E%3Ccircle cx=%22108%22 cy=%2250%22 r=%223%22/%3E%3Ccircle cx=%2238%22 cy=%2214%22 r=%222.4%22/%3E%3C/g%3E%3Cg fill=%22%231c2a3d%22 stroke=%22%233fc4a6%22 stroke-width=%222%22%3E%3Ccircle cx=%22124%22 cy=%2272%22 r=%225%22/%3E%3Ccircle cx=%2214%22 cy=%2262%22 r=%224%22/%3E%3C/g%3E%3C/svg%3E");
+  background-size: auto, auto, 140px 90px;
+}
+@container (max-width: 540px) {
+  .reader[data-kind="asset"] .reader-panel {
+    grid-template-columns: 1fr;
+  }
+  .reader[data-kind="asset"] .gb-dpad {
+    display: none;
+  }
+}
+/* d-pad */
+.gb-dpad {
+  position: relative;
+  width: 4.1rem;
+  height: 4.1rem;
+  flex: none;
+}
+.gb-dpad::before,
+.gb-dpad::after {
+  content: "";
+  position: absolute;
+  border: 3px solid var(--color-ink);
+  border-radius: 6px;
+  background: #3a3f66;
+  box-shadow: inset 2px 2px 0 rgb(255 255 255 / 0.25), 3px 4px 0 rgb(0 0 0 / 0.45);
+}
+.gb-dpad::before {
+  inset: 34% 0;
+}
+.gb-dpad::after {
+  inset: 0 34%;
+}
+/* the screen: dark bezel with the curved corner, LCD inside */
+.reader[data-kind="asset"] .screen {
+  border: 10px solid #2b2f4a;
+  border-radius: 14px 14px 30px 14px;
+  background: #a9c46a;
+  color: #1d3a19;
+  box-shadow:
+    0 0 0 4px var(--color-ink),
+    inset 0 0 0 3px rgb(0 0 0 / 0.35),
+    4px 6px 0 4px rgb(0 0 0 / 0.4);
+}
+.reader[data-kind="asset"] .screen::after {
+  /* static pixel grid instead of the moving scanlines */
+  background:
+    linear-gradient(rgb(29 58 25 / 0.12) 1px, transparent 1px) 0 0 / 100% 4px,
+    linear-gradient(90deg, rgb(29 58 25 / 0.12) 1px, transparent 1px) 0 0 / 4px 100%;
+  animation: none;
+}
+.reader[data-kind="asset"] .screen-meta {
+  opacity: 0.8;
+}
+/* the View button is the "A" button */
+.reader[data-kind="asset"] .play-btn {
+  border-radius: 999px;
+  background: #d1457f;
+  color: var(--color-paper);
+  box-shadow: inset 3px 3px 0 rgb(255 255 255 / 0.28), 0 7px 0 var(--color-ink);
+  transform: rotate(-6deg);
+}
+.reader[data-kind="asset"] .play-btn:hover {
+  background: #e0568f;
+}
+.reader[data-kind="asset"] .play-btn:active {
+  transform: rotate(-6deg) translateY(6px);
+  box-shadow: 0 1px 0 var(--color-ink);
+}
+
+/* ---- Loading screen for assets: the same handheld, a blue glow and an LCD-green progress bar ---- */
+.loading[data-kind="asset"] {
+  background:
+    radial-gradient(ellipse 60% 45% at 50% 38%, rgb(104 186 238 / 0.42), transparent 70%),
+    radial-gradient(rgb(243 229 198 / 0.08) 1.4px, transparent 2px) 0 0 / 12px 12px,
+    var(--color-ink);
+}
+.loading[data-kind="asset"] .loading-lip {
+  border-radius: 1em 1em 0.6em 2.4em;
+  background-color: #1c2a3d;
+  background-image:
+    linear-gradient(112deg, rgb(255 255 255 / 0.34) 0 9%, transparent 9% 15%, rgb(255 255 255 / 0.2) 15% 19%, transparent 19%),
+    linear-gradient(rgb(104 186 238 / 0.62), rgb(104 186 238 / 0.62)),
+    url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22140%22 height=%2290%22 viewBox=%220 0 140 90%22%3E%3Crect width=%22140%22 height=%2290%22 fill=%22%231c2a3d%22/%3E%3Cg fill=%22none%22 stroke=%22%233fc4a6%22 stroke-width=%222.2%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M0 14 H38 L48 24 H92%22/%3E%3Cpath d=%22M0 70 H30 L42 58 H70%22/%3E%3Cpath d=%22M96 90 V62 L108 50 H140%22/%3E%3Cpath d=%22M60 0 V16%22/%3E%3Cpath d=%22M118 0 V28 L128 38 H140%22/%3E%3Cpath d=%22M20 90 V76%22/%3E%3C/g%3E%3Crect x=%2278%22 y=%2230%22 width=%2234%22 height=%2222%22 rx=%222%22 fill=%22%230d1520%22 stroke=%22%23e8b84a%22 stroke-width=%222%22/%3E%3Cpath d=%22M84 26 V30 M92 26 V30 M100 26 V30 M108 26 V30 M84 52 V56 M92 52 V56 M100 52 V56 M108 52 V56%22 stroke=%22%23e8b84a%22 stroke-width=%222.4%22/%3E%3Crect x=%2210%22 y=%2230%22 width=%2222%22 height=%2216%22 rx=%222%22 fill=%22%230d1520%22 stroke=%22%23e8b84a%22 stroke-width=%222%22/%3E%3Cg fill=%22%23e8b84a%22%3E%3Ccircle cx=%2252%22 cy=%2224%22 r=%223%22/%3E%3Ccircle cx=%2270%22 cy=%2258%22 r=%223%22/%3E%3Ccircle cx=%22108%22 cy=%2250%22 r=%223%22/%3E%3Ccircle cx=%2238%22 cy=%2214%22 r=%222.4%22/%3E%3C/g%3E%3Cg fill=%22%231c2a3d%22 stroke=%22%233fc4a6%22 stroke-width=%222%22%3E%3Ccircle cx=%22124%22 cy=%2272%22 r=%225%22/%3E%3Ccircle cx=%2214%22 cy=%2262%22 r=%224%22/%3E%3C/g%3E%3C/svg%3E");
+  background-size: auto, auto, 140px 90px;
+  box-shadow: 0 0 0 0.2em #9fd0e6;
+}
+.loading[data-kind="asset"] .loading-lip::before {
+  /* the little LCD */
+  content: "";
+  position: absolute;
+  left: 1.1em;
+  top: 1.7em;
+  width: 7.2em;
+  height: 2.8em;
+  border: 0.45em solid #2b2f4a;
+  border-radius: 0.5em 0.5em 1.1em 0.5em;
+  background: #a9c46a;
+  box-shadow: 0 0 0 0.18em var(--color-ink);
+}
+.loading[data-kind="asset"] .loading-lip::after {
+  /* the "A" button */
+  content: "";
+  position: absolute;
+  right: 1.3em;
+  top: 2em;
+  width: 2.6em;
+  height: 2.6em;
+  border: 0.2em solid var(--color-ink);
+  border-radius: 50%;
+  background: #d1457f;
+  box-shadow: inset 0.2em 0.2em 0 rgb(255 255 255 / 0.3);
+}
+.loading[data-kind="asset"] .loading-title {
+  text-shadow: 0.06em 0.06em 0 #d1457f;
+}
+.loading[data-kind="asset"] .loading-bar {
+  border-radius: 6px 12px 6px 12px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .loading[data-kind="asset"] .loading-bar span {
+    animation-name: seg-fill-asset;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .loading[data-kind="asset"] .loading-bar span {
+    background: #a9c46a;
+  }
+}
+@keyframes seg-fill-asset {
+  to {
+    background: #a9c46a;
+  }
+}

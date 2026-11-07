@@ -11,7 +11,7 @@ const DEV = import.meta.env.DEV
 /** Gameplay media if supplied, otherwise the drawn cartridge art, large. */
 export function ProjectMedia({ project, accent }: { project: Project; accent: string }) {
   const { mediaSrc, mediaType, posterSrc, title } = project
-  const alt = project.mediaAlt ?? `${title} gameplay`
+  const alt = project.mediaAlt ?? `${title} ${project.kind === 'asset' ? 'preview' : 'gameplay'}`
   if (mediaSrc && mediaType === 'video') {
     return (
       <video controls preload="none" playsInline poster={posterSrc} aria-label={alt}>
@@ -78,8 +78,9 @@ export function ProjectPage({ project }: { project: Project }) {
     ] as [string, string | undefined][]
   ).filter((f): f is [string, string] => Boolean(f[1]))
 
-  const idx = projects.findIndex((p) => p.id === project.id)
-  const next = !isEngine && projects.length > 1 && idx >= 0 ? projects[(idx + 1) % projects.length] : undefined
+  const sameShelf = projects.filter((p) => (p.kind === 'asset') === (project.kind === 'asset'))
+  const idx = sameShelf.findIndex((p) => p.id === project.id)
+  const next = !isEngine && sameShelf.length > 1 && idx >= 0 ? sameShelf[(idx + 1) % sameShelf.length] : undefined
 
   useEffect(() => {
     titleRef.current?.focus({ preventScroll: true })
@@ -87,8 +88,8 @@ export function ProjectPage({ project }: { project: Project }) {
 
   return (
     <article className="proj" style={accentStyle(project)} aria-labelledby="project-title">
-      <a href={isEngine ? '#/physics' : '#/games'} className="back-link">
-        <span aria-hidden="true">←</span> {isEngine ? 'Back to physics engine' : 'Back to games'}
+      <a href={isEngine ? '#/physics' : project.kind === 'asset' ? `#/games/${encodeURIComponent(project.id)}` : '#/games'} className="back-link">
+        <span aria-hidden="true">←</span> {isEngine ? 'Back to physics engine' : project.kind === 'asset' ? 'Back to assets' : 'Back to games'}
       </a>
 
       <div className="proj-grid">

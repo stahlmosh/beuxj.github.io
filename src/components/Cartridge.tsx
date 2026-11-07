@@ -12,7 +12,7 @@ export function CartridgeFace({ project, previewing = false }: { project: Projec
   const stripe = [project.type, project.genre].filter(Boolean).join(' · ')
   return (
     <span className="cart-3d">
-      <span className="cart-front" data-variant={project.variant}>
+      <span className="cart-front" data-variant={project.variant ?? (project.kind === 'asset' ? 'asset' : undefined)}>
         <span className="cart-grip" />
         <span className="cart-label">
           <span className="cart-stripe">{stripe}</span>
