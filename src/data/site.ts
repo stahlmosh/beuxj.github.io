@@ -88,7 +88,7 @@ export const site = {
  * Write a teaser to show it on the live site, e.g. 'Case still open.' Leave empty to hide it.
  * (In `npm run dev` it always shows, with a sample line, so you can see it.)
  */
-export const teaser = ''
+export const teaser = 'The Replacement: Work in progress'
 
 /** Optional: e.g. 'India' or 'the State of California, USA'. Leave empty to omit the "Governing law" clause. */
 export const legal = {
